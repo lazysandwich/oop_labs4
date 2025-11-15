@@ -2,6 +2,7 @@
 #define POINTS_H
 #include <iostream>
 #include <concepts>
+#include <memory>
 
 template <typename T>
 concept Scalar = std::is_arithmetic_v<T>;
@@ -9,15 +10,11 @@ concept Scalar = std::is_arithmetic_v<T>;
 template <Scalar T>
 class Point {
 
-private:
+public:
     T x{}, y{};
 
-public:
     Point() = default;
     Point(T x, T y) : x(x), y(y) {}
-
-    T getX() const { return x; }
-    T getY() const { return y; }
 
     friend std::istream& operator>>(std::istream& in, Point& p) {
         in >> p.x >> p.y;
